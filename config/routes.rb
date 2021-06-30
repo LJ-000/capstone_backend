@@ -5,12 +5,7 @@ Rails.application.routes.draw do
       resources :subscriptions
       resources :users
       resources :cards
-
-              
-      # resources :subscriptions 
-      # resources :cards 
-      # resources :users 
-      # post "/login", to: "users#login"
+      post "/login", to: "users#login"
     end
   end
 

@@ -432,96 +432,6 @@ audience: "Anyone",
 quantity: 50,
 )
 
-# Subscription.create(
-# event_name: ,
-# date: ,
-# reminder: ,
-# reminder_method: ,
-# mail_by: ,
-# repeat: ,
-# card_id: Card.all.sample.id
-# user_id: User.all.sample.id
-# )
-
-random_dates = [Time.new(2021, 8, 31), Time.new(2022, 1, 10), Time.new(2022, 3, 5), Time.new(2021, 11, 21), Time.new(2021, 9, 18), Time.new(2021, 10, 31), Time.new(2021, 2, 14)]
-
-Subscription.create(
-event_name: "Mom's Birthday",
-date: random_dates.sample,
-reminder: date - 518400,
-reminder_method: "Email",
-mail_by: date - 432000,
-repeat: "Every Year",
-card_id: Card.all.sample.id
-user_id: User.all.sample.id
-)
-
-Subscription.create(
-event_name: "Dad's Birthday",
-date: random_dates.sample,
-reminder: date - 518400,
-reminder_method: "Email",
-mail_by: date - 432000,
-repeat:  "Every Year",
-card_id: Card.all.sample.id
-user_id: User.all.sample.id
-)
-
-Subscription.create(
-event_name: "John's Graduation",
-date: random_dates.sample,
-reminder: date - 518400,
-reminder_method: "Email",
-mail_by: date - 432000,
-repeat: "Once",
-card_id: Card.all.sample.id
-user_id: User.all.sample.id
-)
-
-Subscription.create(
-event_name: "Theresa's Housewarming",
-date: random_dates.sample,
-reminder: date - 518400,
-reminder_method: "Email",
-mail_by: date - 432000,
-repeat: "Once",
-card_id: Card.all.sample.id
-user_id: User.all.sample.id
-)
-
-Subscription.create(
-event_name: "Aunt Ann's Surgery",
-date: random_dates.sample,
-reminder: date - 518400,
-reminder_method: "Email",
-mail_by: date - 432000,
-repeat: "Once",
-card_id: Card.all.sample.id
-user_id: User.all.sample.id
-)
-
-Subscription.create(
-event_name: "My Birthday Party",
-date: random_dates.sample,
-reminder: date - 518400,
-reminder_method: "Email",
-mail_by: date - 432000,
-repeat: "Every Year",
-card_id: Card.all.sample.id
-user_id: User.all.sample.id
-)
-
-Subscription.create(
-event_name: "Andrew's Wedding",
-date: random_dates.sample,
-reminder: date - 518400,
-reminder_method: "Email",
-mail_by: date - 432000,
-repeat: "Once",
-card_id: Card.all.sample.id
-user_id: User.all.sample.id
-)
-
 # User.create(
 # first_name: ,
 # last_name: ,
@@ -536,7 +446,7 @@ first_name: "Laura",
 last_name: "Nielsen",
 username: "nielsen.j.laura@gmail.com",
 password: "123",
-phone_number: 3017859494,
+phone_number: Faker::PhoneNumber.cell_phone,
 payment_info: true,
 )
 
@@ -545,8 +455,99 @@ first_name: "First",
 last_name: "Customer",
 username: "fakemail@gmail.com",
 password: "123",
-phone_number: 1234567890,
+phone_number: Faker::PhoneNumber.cell_phone ,
 payment_info: true,
 )
+
+# Subscription.create(
+# event_name: ,
+# date: ,
+# reminder: ,
+# reminder_method: ,
+# mail_by: ,
+# repeat: ,
+# card_id: Card.all.sample.id
+# user_id: User.all.sample.id
+# )
+
+# random_dates = [Time.new(2021, 8, 31), Time.new(2022, 1, 10), Time.new(2022, 3, 5), Time.new(2021, 11, 21), Time.new(2021, 9, 18), Time.new(2021, 10, 31), Time.new(2021, 2, 14)]
+
+Subscription.create(
+event_name: "Mom's Birthday",
+date: Faker::Date.between(from: '2021-08-15', to: '2022-05-05'),
+reminder_date: Faker::Date.backward(days: 5),
+reminder_method: "Email",
+mail_by: Faker::Date.backward(days: 4),
+repeat: "Every Year",
+card_id: Card.all.sample.id,
+user_id: User.all.sample.id
+)
+
+Subscription.create(
+event_name: "Dad's Birthday",
+date: Faker::Date.between(from: '2021-08-15', to: '2022-05-05'),
+reminder_date: Faker::Date.backward(days: 5),
+reminder_method: "Email",
+mail_by: Faker::Date.backward(days: 4),
+repeat:  "Every Year",
+card_id: Card.all.sample.id,
+user_id: User.all.sample.id
+)
+
+Subscription.create(
+event_name: "John's Graduation",
+date: Faker::Date.between(from: '2021-08-15', to: '2022-05-05'),
+reminder_date: Faker::Date.backward(days: 5),
+reminder_method: "Email",
+mail_by: Faker::Date.backward(days: 4),
+repeat: "Once",
+card_id: Card.all.sample.id,
+user_id: User.all.sample.id
+)
+
+Subscription.create(
+event_name: "Theresa's Housewarming",
+date: Faker::Date.between(from: '2021-08-15', to: '2022-05-05'),
+reminder_date: Faker::Date.backward(days: 5),
+reminder_method: "Email",
+mail_by: Faker::Date.backward(days: 4),
+repeat: "Once",
+card_id: Card.all.sample.id,
+user_id: User.all.sample.id
+)
+
+Subscription.create(
+event_name: "Aunt Ann's Surgery",
+date: Faker::Date.between(from: '2021-08-15', to: '2022-05-05'),
+reminder_date: Faker::Date.backward(days: 5),
+reminder_method: "Email",
+mail_by: Faker::Date.backward(days: 4),
+repeat: "Once",
+card_id: Card.all.sample.id,
+user_id: User.all.sample.id
+)
+
+Subscription.create(
+event_name: "My Birthday Party",
+date: Faker::Date.between(from: '2021-08-15', to: '2022-05-05'),
+reminder_date: Faker::Date.backward(days: 5),
+reminder_method: "Email",
+mail_by: Faker::Date.backward(days: 4),
+repeat: "Every Year",
+card_id: Card.all.sample.id,
+user_id: User.all.sample.id
+)
+
+Subscription.create(
+event_name: "Andrew's Wedding",
+date: Faker::Date.between(from: '2021-08-15', to: '2022-05-05'),
+reminder_date: Faker::Date.backward(days: 5),
+reminder_method: "Email",
+mail_by: Faker::Date.backward(days: 4),
+repeat: "Once",
+card_id: Card.all.sample.id,
+user_id: User.all.sample.id
+)
+
 
 puts "Grow Little Seeds"
