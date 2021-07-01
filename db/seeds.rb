@@ -445,19 +445,19 @@ User.create(
 first_name: "Laura",
 last_name: "Nielsen",
 username: "nielsen.j.laura@gmail.com",
-password: "123",
+password: "123Flatiron",
 phone_number: Faker::PhoneNumber.cell_phone,
 payment_info: true,
 )
 
-User.create(
-first_name: "First",
-last_name: "Customer",
-username: "fakemail@gmail.com",
-password: "123",
-phone_number: Faker::PhoneNumber.cell_phone ,
-payment_info: true,
-)
+# User.create(
+# first_name: "First",
+# last_name: "Customer",
+# username: "fakemail@gmail.com",
+# password: "123",
+# phone_number: Faker::PhoneNumber.cell_phone ,
+# payment_info: true,
+# )
 
 # Subscription.create(
 # event_name: ,
