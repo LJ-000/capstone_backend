@@ -25,6 +25,12 @@ def update
     render json: subscription
 end 
 
+def destroy
+    subscription = Subscription.find(params[:id])
+    subscription.destroy!
+    render json: {}
+end 
+
 private 
 
 def subscription_params
