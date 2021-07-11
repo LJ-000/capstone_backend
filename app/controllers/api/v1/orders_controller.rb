@@ -1,5 +1,16 @@
 class Api::V1::OrdersController < ApplicationController
 
+
+def index 
+    @orders = Order.all 
+        render json: @orders , except: [:created_at, :updated_at]
+    end 
+    
+def show 
+        order = Order.find(params[:id])
+        render json: order, except: [:created_at, :updated_at]
+    end 
+    
  def neworder
         product_1 = Card.find(order_params[:card_id])
         quantity_1 = order_params[:quantity]

@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
     
-  resources :orderitems
-  resources :orders
+  
   namespace :api do
     namespace :v1 do
+      resources :orderitems
+      resources :orders
       resources :subscriptions
       resources :users
       resources :cards

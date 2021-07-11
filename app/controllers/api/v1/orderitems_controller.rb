@@ -1,5 +1,15 @@
 class Api::V1::OrderitemsController < ApplicationController
 
+    def index 
+        @order_item = OrderItem.all 
+            render json: @order_item , except: [:created_at, :updated_at]
+        end 
+        
+    def show 
+            order_item = OrderItem.find(params[:id])
+            render json: order_item, except: [:created_at, :updated_at]
+        end 
+
     def create
         order = Order.find(order_item_params[:order_id])
         order_items = order.order_items
