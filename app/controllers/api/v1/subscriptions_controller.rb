@@ -34,7 +34,7 @@ end
 private 
 
 def subscription_params
-    params.permit(:event_name, :data, :reminder_date, :reminder_method, :mail_by, :repeat)
+    params.permit(:event_name, :date, :reminder_date, :reminder_method, :mail_by, :repeat)
 end 
 
 
