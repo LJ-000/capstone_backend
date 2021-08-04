@@ -1,4 +1,4 @@
-class Api::V1::SubscriptionsController < ApplicationController
+class SubscriptionsController < ApplicationController
 
 def index 
     @subscriptions = Subscription.all 

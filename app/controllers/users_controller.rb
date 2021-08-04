@@ -1,4 +1,4 @@
-class Api::V1::UsersController < ApplicationController
+class UsersController < ApplicationController
 
     def index 
         @users = User.all
@@ -7,11 +7,12 @@ class Api::V1::UsersController < ApplicationController
 
     def create 
         user = User.create(user_params)
-
         if user.valid?
-        render json: user 
+            payload = {user_id: user.id}
+            token = encode_token(payload)
+            render json: {user: user, jwt: token}
         else 
-            render json: {error: "Cannot create new user"}
+            render json: {error: user.errors.full_messages}, status: :not_acceptable 
     end  
 end 
 
@@ -27,9 +28,13 @@ end
 end 
 
 private
+    # def user_params
+    #     params.require(:user).permit(:username, :password)
+    # end
+
     def user_params
-        params.require(:user).permit(:username, :password)
-    end
+        params.permit(:username, :password)
+    end 
 
 end
 
