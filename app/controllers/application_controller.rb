@@ -1,12 +1,14 @@
 class ApplicationController < ActionController::API
+    # require 'pry'
     before_action :require_login
     # skip_before_action :logged_in?, only: [:create, :login]
 
     def encode_token(payload)
-        JWT.encode(payload, 'Flatiron')
+        JWT.encode(payload, 'Flatiron', 'HS256')
     end
 
     def auth_header
+        puts request.headers 
         request.headers['Authorization']
     end
 
@@ -23,7 +25,9 @@ class ApplicationController < ActionController::API
 
     def session_user
         decoded_hash = decoded_token
-        if !decoded_hash.empty? 
+        # binding.pry 
+        # if !decoded_hash.empty? 
+        if !decoded_hash.nil? 
             puts decoded_hash.class
             user_id = decoded_hash[0]['user_id']
             @user = User.find_by(id: user_id)
@@ -37,7 +41,7 @@ class ApplicationController < ActionController::API
     end
 
     def require_login
-     render json: {message: 'Please Login'}, status: :unauthorized unless logged_in?
+        render json: {message: 'Please Login'}, status: :unauthorized unless logged_in?
     end
 end
 

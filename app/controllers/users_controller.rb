@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    skip_before_action :require_login, only: [:create]
 
     def index 
         @users = User.all
@@ -33,6 +34,7 @@ private
     # end
 
     def user_params
+        byebug 
         params.permit(:username, :password)
     end 
 
