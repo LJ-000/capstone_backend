@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::API
-    # require 'pry'
+    require 'pry'
     before_action :require_login
-    # skip_before_action :logged_in?, only: [:create, :login]
 
     def encode_token(payload)
         JWT.encode(payload, 'Flatiron', 'HS256')

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_08_224651) do
+ActiveRecord::Schema.define(version: 2021_08_09_191547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,26 +26,9 @@ ActiveRecord::Schema.define(version: 2021_08_08_224651) do
     t.float "price"
   end
 
-  create_table "order_items", force: :cascade do |t|
-    t.bigint "card_id", null: false
-    t.bigint "order_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["card_id"], name: "index_order_items_on_card_id"
-    t.index ["order_id"], name: "index_order_items_on_order_id"
-  end
-
-  create_table "orderitems", force: :cascade do |t|
-    t.bigint "card_id", null: false
-    t.bigint "order_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["card_id"], name: "index_orderitems_on_card_id"
-    t.index ["order_id"], name: "index_orderitems_on_order_id"
-  end
-
   create_table "orders", force: :cascade do |t|
-    t.integer "quantity"
+    t.integer "total_price", default: 0
+    t.integer "total_qty", default: 0
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -79,10 +62,6 @@ ActiveRecord::Schema.define(version: 2021_08_08_224651) do
     t.integer "current_order"
   end
 
-  add_foreign_key "order_items", "cards"
-  add_foreign_key "order_items", "orders"
-  add_foreign_key "orderitems", "cards"
-  add_foreign_key "orderitems", "orders"
   add_foreign_key "orders", "users"
   add_foreign_key "subscriptions", "cards"
   add_foreign_key "subscriptions", "users"

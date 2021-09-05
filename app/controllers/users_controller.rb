@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :require_login, only: [:create]
+    skip_before_action :require_login, only: [:login, :create]
 
     def index 
         @users = User.all
@@ -14,67 +14,30 @@ class UsersController < ApplicationController
             render json: {user: user, jwt: token}
         else 
             render json: {error: user.errors.full_messages}, status: :not_acceptable 
-    end  
-end 
+        end  
+    end 
 
     def login 
- 
         user = User.find_by(username: params[:username])
 
         if user && user.authenticate(params[:password])
-        render json: {username: user.username, token: encode_token({user_id: user.id})}
+            render json: {username: user.username, token: encode_token({user_id: user.id})}
         else 
             render json: {message: "Wrong username or password was entered. Pleast try again."}
+        end 
     end 
-end 
 
-private
-    # def user_params
-    #     params.require(:user).permit(:username, :password)
-    # end
+    def auto_login
+        if session_user
+            render json: session_user
+        else
+            render json: {errors: "No User Logged In"}
+        end 
+    end 
 
+    private
     def user_params
-        byebug 
         params.permit(:username, :password)
     end 
 
 end
-
-
-
-
-# class Api::V1::UsersController < ApplicationController
-
-#     def index 
-#         @users = User.all
-#         render json: @users
-#     end 
-
-#     def create
-#         @user = User.create(user_params)
-#         if @user.valid?
-#           token = encode_token({user_id: @user.id})
-#           render json: {user: @user, token: token}
-#         else
-#           render json: {error: "Invalid username or password"}
-#         end
-#       end
-
-
-#     def login
-#         @user = User.find_by(username: params[:username])
-
-#         if @user && @user.authenticate(params[:password])
-#             token = encode_token({user_id: @user.id})
-#             render json: {user: @user, token: token}
-#         else
-#             render json: {error: "Invalid username or password"}
-#     end
-#   end
-
-# private
-#     def user_params
-#         params.require(:user).permit(:username, :password)
-#     end
-
-# end
